@@ -6,6 +6,9 @@ import java.util.Scanner;
 public class mortgagecalculator {
 
   public static void main(String[] args) {
+    final byte MONTHS = 12;
+    final byte PERCENTAGE = 100;
+
     Scanner principalScanner = new Scanner(System.in);
     System.out.print("Principal: ");
     String principal = principalScanner.nextLine().trim();
@@ -17,20 +20,22 @@ public class mortgagecalculator {
     String interest = interestScanner.nextLine().trim();
     double interestDble = Double.parseDouble(interest);
     System.out.println("Entry: " + interestDble);
-    double r = (interestDble / 100) / 12;
+    double rate = (interestDble / PERCENTAGE) / MONTHS;
 
     Scanner periodScanner = new Scanner(System.in);
     System.out.print("Period (Years): ");
-    String period = periodScanner.nextLine().trim();
-    int periodInt = Integer.parseInt(period);
-    int n = periodInt * 12;
+    String periodEntry = periodScanner.nextLine().trim();
+    byte periodInt = Byte.parseByte(periodEntry);
+    int period = periodInt * MONTHS;
     System.out.println("Entry: " + periodInt);
 
-    double mortgage = principalInt * ((r * Math.pow( (1 + r), n)) / ((Math.pow( (1 + r), n))-1)); 
+    double mortgage = principalInt * 
+      ((rate * Math.pow((1 + rate), period)) / 
+      ((Math.pow((1 + rate), period)) - 1));
     NumberFormat formatter = NumberFormat.getCurrencyInstance();
     String mortgageString = formatter.format(mortgage);
     System.out.println("Mortgage: " + mortgageString);
-    
+
   }
-  
+
 }
