@@ -45,11 +45,11 @@ public class mortgagecalculator {
     while (true) {
     System.out.print("Period (Years): ");
     period = scanner.nextInt();
-    if ((period >= 1) && (period <= 100)) {
+    if ((period >= 1) && (period <= 30)) {
       periodMonths = (period * MONTHS);
       break;
     }
-    System.out.println("Please enter value between 1 and 100");
+    System.out.println("Please enter value between 1 and 30");
   }
     System.out.println("Entry: " + period);
 
